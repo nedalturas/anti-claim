@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/vars.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+      integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <div class="hero">
+        <h1 class="hero-title">By: Ned</h1>
+        <p class="lead">
+          Yes, he made this <s>mess</s> masterpiece and the tool you used
+          earlier.
+        </p>
+        <p>
+          Saw it, liked it, now it's "yours"? Bold. Bolder than your git
+          history.
+        </p>
+        <p>
+          <code>Ctrl+C</code>is not a personality. Neither is
+          <code>Ctrl+V</code>.
+        </p>
+        <p>
+          If someone claims it's their work, tell them to send their receipts to
+          my email and I will gladly
+          <button type="button" class="slap" id="slap" aria-describedby="panel">
+            slap
+          </button>
+          them with the code commits.
+        </p>
+        <hr class="rule" />
+        <p class="sign">Thank you :)</p>
+      </div>
+    </main>
+    <div class="panel" id="panel" role="tooltip">
+      <!-- Put your gif next to this file and name it slap.gif -->
+      <img
+        src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMml3Y2t3bnQxazlpdHZqemk3dnJjOTFqanBhaDAycHZqaDFsY3lvaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jauNHUg3yB9ZmDtzOv/giphy.gif"
+        alt="A slap, delivered"
+        onerror="document.getElementById('panel').classList.add('nogif')"
+      />
+      <div class="missing">
+        [SLAP GIF] Put your own gif next to this file and name it
+        <b>slap.gif</b>.
+      </div>
+    </div>
+
+    <script>
+      let word = document.getElementById("slap");
+      let panel = document.getElementById("panel");
+      function place() {
+        var r = word.getBoundingClientRect();
+        var w = panel.offsetWidth;
+        var h = panel.offsetHeight;
+        var left = Math.max(
+          8,
+          Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 8),
+        );
+        var top = r.top - h - 10;
+        if (top < 8) top = r.bottom + 10;
+        panel.style.left = left + "px";
+        panel.style.top = top + "px";
+      }
+      function show() {
+        panel.classList.add("show");
+        place();
+      }
+      function hide() {
+        panel.classList.remove("show");
+        word.classList.remove("on");
+      }
+
+      word.addEventListener("mouseenter", show);
+      word.addEventListener("mouseleave", hide);
+      word.addEventListener("focus", show);
+      word.addEventListener("blur", hide);
+      // Touch has no hover: a tap toggles the gif
+      word.addEventListener("click", function () {
+        var open =
+          panel.classList.contains("show") && word.classList.contains("on");
+        if (open) {
+          hide();
+        } else {
+          word.classList.add("on");
+          show();
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") hide();
+      });
+      window.addEventListener("resize", function () {
+        if (panel.classList.contains("show")) place();
+      });
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (panel.classList.contains("show")) place();
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

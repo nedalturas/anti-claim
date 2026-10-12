@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 760px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* comment 
+
+
+.hero h1{
+  color: var(--main-text);
+}
+
+.hero h4{
+  font-size: 2rem;
+  color: var(--text-muted);
+}
+
+*/
+body {
+  background: var(--green);
+  color: var(--ink);
+  /* Arial/Helvetica kept on purpose: the flat, unstyled look is the joke */
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+/* Reason: one huge focal point, everything else small and quiet */
+/* h1 { */
+/*   font-size: clamp(64px, 17vw, 168px); */
+/*   line-height: 0.95; */
+/*   font-weight: 400; */
+/*   letter-spacing: -0.03em; */
+/*   margin: 0 0 20px; */
+/*   overflow-wrap: anywhere; */
+/* } */
+
+.hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: 10em !important;
+}
+
+.lead {
+  font-size: clamp(18px, 3.2vw, 22px);
+  /* margin: 0 1em 1em 12px; */
+  margin-bottom: 1em !important;
+}
+
+.lead s {
+  text-decoration-thickness: 2px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  max-width: 62ch;
+}
+.rule {
+  border: 0;
+  border-top: 1px dotted var(--ink);
+  margin: 18px 0;
+}
+.sign {
+  margin-top: 18px;
+}
+
+/* The slap word: the only highlighted thing on the page */
+.slap {
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 0;
+  border-radius: 2px;
+  padding: 0 6px;
+  cursor: pointer;
+  display: inline-block;
+}
+.slap:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+code {
+  background-color: black !important;
+  color: var(--main-text);
+  outline: none !important;
+  border: none !important;
+}
+/* Reason: the word flinches when hit, reinforcing the joke */
+.slap:hover,
+.slap.on {
+  animation: flinch 0.35s ease-in-out 1;
+}
+@keyframes flinch {
+  0% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-9deg) translateX(-3px);
+  }
+  60% {
+    transform: rotate(6deg) translateX(2px);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.panel {
+  position: fixed;
+  z-index: 10;
+  width: min(240px, 70vw);
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: 6px;
+  display: none;
+  pointer-events: none;
+}
+.panel.show {
+  display: block;
+}
+.panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.panel .missing {
+  display: none;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 10px;
+}
+.panel.nogif img {
+  display: none;
+}
+.panel.nogif .missing {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slap:hover,
+  .slap.on {
+    animation: none;
+  }
+}
